@@ -6,15 +6,15 @@ static unsigned long long get_time(void);
 static void init_led(void)
 {
     /* OE:output enable */
-    SIO_GPIO_OE_CLR = 1 << 25;
-    SIO_GPIO_OUT_CLR = 1 << 25;
+    SIO_GPIO_OE_CLR = 1 << 10;
+    SIO_GPIO_OUT_CLR = 1 << 10;
 
     /* GPIOとして使う為の設定 */
-    PADS_BANK0_BASE_GPIO25_SET = 1 << 6;
-    IO_BANK0_GPIO25_CTRL_RW = 5;
-    PADS_BANK0_BASE_GPIO25_CLR = 1 << 8;
+    PADS_BANK0_BASE_GPIO10_SET = 1 << 6;
+    IO_BANK0_GPIO10_CTRL_RW = 5;
+    PADS_BANK0_BASE_GPIO10_CLR = 1 << 8;
 
-    SIO_GPIO_OE_SET = 1 << 25;
+    SIO_GPIO_OE_SET = 1 << 10;
 }
 
 static unsigned long long get_time(void)
@@ -46,9 +46,9 @@ void main(void)
 
     while (1)
     {
-        SIO_GPIO_OUT_SET = 1 << 25;
+        SIO_GPIO_OUT_SET = 1 << 10;
         wait_ms(250);
-        SIO_GPIO_OUT_CLR = 1 << 25;
+        SIO_GPIO_OUT_CLR = 1 << 10;
         wait_ms(250);
     }
 }
