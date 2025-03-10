@@ -10,7 +10,6 @@ static void init_led(void)
     SIO_GPIO_OUT_CLR = 1 << 10;
 
     /* GPIOとして使う為の設定 */
-    PADS_BANK0_BASE_GPIO10_SET = 1 << 6;
     IO_BANK0_GPIO10_CTRL_RW = 5;
     PADS_BANK0_BASE_GPIO10_CLR = 1 << 8;
 
