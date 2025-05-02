@@ -26,11 +26,9 @@
 
 * [モータードライバ Data Sheet](https://files.waveshare.com/upload/6/62/TB6612FNG_datasheet_en.pdf)
 
-
 # Contents
 | # | Name | Description | Used hardware | Peripheral | 
 | - | - | - | - | - |
 | 1 | aa | aa | aa | aa |
 | 2 | aa | aa | aa | aa |
-
 
