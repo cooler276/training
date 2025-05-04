@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>live_data_plotter</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #chartCanvas {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="chartCanvas"></canvas>
+    <script>
+        const chartCanvas = document.getElementById('chartCanvas');
+        let chart;
+        const dataPoints = [];
+
+        function initChart() {
+            chart = new Chart(chartCanvas, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'AD値',
+                        data: dataPoints,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function addData(value) {
+            const timestamp = new Date().toLocaleTimeString();
+            chart.data.labels.push(timestamp);
+            chart.data.datasets[0].data.push(value);
+            chart.update();
+        }
+
+        function connectWebSocket() {
+            const websocket = new WebSocket('ws://localhost:8080'); // 仲介サーバーのWebSocketポートに変更
+
+            websocket.onopen = () => {
+                console.log('WebSocket接続成功 (仲介サーバー)');
+            };
+
+            websocket.onmessage = (event) => {
+                const adValue = parseInt(event.data);
+                if (!isNaN(adValue)) {
+                    addData(adValue);
+                } else {
+                    console.log('無効なAD値を受信:', event.data);
+                }
+            };
+
+            websocket.onclose = () => {
+                console.log('WebSocket接続が閉じられました (仲介サーバー)');
+                setTimeout(connectWebSocket, 1000);
+            };
+
+            websocket.onerror = (error) => {
+                console.error('WebSocketエラー (仲介サーバー):', error);
+            };
+        }
+
+        initChart();
+        connectWebSocket();
+    </script>
+</body>
+
+</html>

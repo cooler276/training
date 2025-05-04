@@ -6,7 +6,6 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type")
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
 
@@ -29,37 +28,38 @@ set(PICO_BOARD pico2_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(key_buzzer_demo C CXX ASM)
+project(adc_demo C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(key_buzzer_demo main.c )
+add_executable(adc_demo main.c )
 
-pico_set_program_name(key_buzzer_demo "key_buzzer_demo")
-pico_set_program_version(key_buzzer_demo "0.1")
+pico_set_program_name(adc_demo "adc_demo")
+pico_set_program_version(adc_demo "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(key_buzzer_demo 0)
-pico_enable_stdio_usb(key_buzzer_demo 0)
+pico_enable_stdio_uart(adc_demo 0)
+pico_enable_stdio_usb(adc_demo 1)
 
 # Add the standard library to the build
-target_link_libraries(key_buzzer_demo
-        hardware_pwm
-        hardware_timer
+target_link_libraries(adc_demo
+        hardware_adc
+        hardware_dma
+        hardware_gpio
         pico_stdlib)
 
 # Add the standard include files to the build
-target_include_directories(key_buzzer_demo PRIVATE
+target_include_directories(adc_demo PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(key_buzzer_demo 
+target_link_libraries(adc_demo 
         
         )
 
-pico_add_extra_outputs(key_buzzer_demo)
+pico_add_extra_outputs(adc_demo)
 

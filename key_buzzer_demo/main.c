@@ -89,9 +89,12 @@ int main()
     pwm_set_chan_level(slice_num, PWM_CHAN_A, BUZZER_OFF); // 最初は音を鳴らさない
 
     // タイマーの設定
-    // repeating_timerはタイマーの構造体
-    // add_repeating_timer_ms()は指定した周期でタイマー割り込みを設定する関数
-    struct repeating_timer timer;
+    struct repeating_timer timer; // タイマー構造体を宣言
+    // 繰り返しタイマーを設定する関数
+    // - 第1引数: 繰り返し間隔 (マイクロ秒)。負の値は、最初の実行も遅延させる
+    // - 第2引数: コールバック関数 (タイマー割り込み時に実行される関数)
+    // - 第3引数: コールバック関数に渡すユーザーデータ (ここではNULL)
+    // - 第4引数: 設定するタイマー構造体へのポインタ
     add_repeating_timer_ms(TIMER_INTERVAL_MS, timer_callback, NULL, &timer);
 
     // メインループ

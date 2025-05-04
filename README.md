@@ -7,14 +7,14 @@
 
 4. [Raspberry Pi Pico Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=raspberry-pi.raspberry-pi-pico)<br>Pico用のVScode拡張機能
 
-5. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)<br>サーバを簡単に立てるVScode拡張機能<br>ツールで使用する
-
 ## Recommend Extension
 1. [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)<br>インデントが色で表示される
 
 2. [Clang-Format](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)<br>ソースコードの見た目を自動で整える
 
 3. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)<br>英単語のスペルミスを発見してくれる
+
+4. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)<br>サーバを簡単に立てるVScode拡張機能<br>ツールで使用する
 
 
 # Document
