@@ -55,6 +55,7 @@ target_include_directories(lcd_demo PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(lcd_demo 
+        pico_stdlib
         hardware_i2c
         
         )
